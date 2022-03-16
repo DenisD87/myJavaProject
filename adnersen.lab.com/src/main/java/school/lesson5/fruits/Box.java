@@ -10,7 +10,7 @@ public class Box<T extends Fruit> {
         this.fruits = new ArrayList<>();
     }
 
-    public float getWeight() {
+    public float getWeight() throws IllegalArgumentException{
         float boxWeight = 0f;
         if (!fruits.isEmpty()) {
             Fruits fruit = Fruits.valueOf(fruits.get(0).getClass().getSimpleName().toUpperCase());
