@@ -5,26 +5,16 @@ import java.util.List;
 
 public class Box<T extends Fruit> {
     public List<T> fruits;
-    private float boxWeight;
 
     public Box() {
         this.fruits = new ArrayList<>();
-        this.boxWeight = 0f;
     }
 
     public float getWeight() {
+        float boxWeight = 0f;
         if (!fruits.isEmpty()) {
-            if (fruits.get(0).getClass() == Apple.class) {
-                this.boxWeight = fruits.size() * Apple.WEIGHT;
-            } else if (fruits.get(0).getClass() == Orange.class) {
-                this.boxWeight = fruits.size() * Orange.WEIGHT;
-            } else {
-// на случай добавления нового класса, наследуемого от фрукта
-                System.out.println("Unknown type");
-                this.boxWeight = 0f;
-            }
-        } else {
-            this.boxWeight = 0f;
+            Fruits fruit = Fruits.valueOf(fruits.get(0).getClass().getSimpleName().toUpperCase());
+            boxWeight = fruits.size() * fruit.getFruitWeight();
         }
         return boxWeight;
     }
